@@ -4,13 +4,13 @@ class Man {
   int x=width/2-20, y =height/2-32;
   int xDelta=0, yDelta=0;
   final int DOWN=0, LEFT=1, RIGHT=2, UP=3;
-  final int DELTA=3;
+  int DELTA=1;
   float j=0;
   int direction;
 
   Man()
   {
-    man= loadImage("C:\\Users\\srajago\\Desktop\\processing videos\\Project1\\dashch14.png");
+    man= loadImage("dashch14.png");
     cliparts = new PImage[4][4];
     for (int i=0; i<4; i++)
       for (int j=0; j<4; j++)
@@ -40,6 +40,11 @@ class Man {
       xDelta=DELTA; 
       direction = RIGHT;
     }
+    if (keysPressed['j'] && DELTA<10)
+      DELTA = DELTA +1;
+    if (keysPressed['k'] && DELTA>1)
+      DELTA = DELTA -1;
+    
     if (!keysPressed['a']&&!keysPressed['d'])
       xDelta = 0;
     if (!keysPressed['w']&&!keysPressed['s'])
@@ -51,6 +56,6 @@ class Man {
     x = x +xDelta;
     y = y+ yDelta;
     if(!(xDelta==0 && yDelta==0))
-      j = (j+0.3)%4;
+      j = (j+0.1)%4;
   }
 }
